@@ -1,0 +1,79 @@
+html {
+  // 这个fontsize一般是基于iphone6（375）来设置的
+  font-size: 100px;
+}
+// div {
+//   width: 2rem;
+// }
+body {
+  font-size: 12px;
+}
+@import './virable.scss';
+@import './mixins.scss';
+.wrapper {
+  // 实现移动端滑动
+  overflow-y: scroll;
+  position: absolute;
+  left: 0;
+  top: 0;
+  // 定位版心，要给底部一个距离，overflow-y才能生效
+  bottom: 0rem;
+  right: 0;
+  padding: 0 0.18rem 0.2rem 0.18rem;
+  // margin: 0 auto;
+  // width: 3.4rem;
+}
+/* 清除默认样式的代码 */
+* {
+  /* 清除默认边距 */
+  margin: 0;
+  padding: 0;
+  /* 内减模式 */
+  box-sizing: border-box;
+}
+
+/* 清除列表的样式点点 */
+ul,
+ol,
+li {
+  list-style: none;
+}
+/* 清除a标签的下划线 */
+a {
+  text-decoration: none;
+  color: #333;
+}
+/* 双伪元素 清除浮动和塌陷方法 */
+.clearfix:before,
+.clearfix:after {
+  content: '';
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+/* 去除默认的倾斜效果 */
+/* em 和 i表示倾斜标签 */
+em,
+i {
+  font-style: normal;
+}
+/* 去除input默认样式 */
+input {
+  border: none;
+  /* outline是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用 */
+  outline: none;
+  color: #333;
+}
+/* 设置img的垂直对齐方式为居中对齐，去除img默认下间距*/
+img {
+  vertical-align: middle;
+}
+/* 左浮动 */
+.fl {
+  float: left;
+}
+/* 右浮动 */
+.fr {
+  float: right;
+}
