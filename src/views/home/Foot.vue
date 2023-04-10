@@ -4,11 +4,11 @@
     <!-- margin的位置书写顺序：上右下左（顺时针） -->
     <!-- 浏览器默认能显示的最小字号为12px，所以如果需要字号为10px的文字，不能直接设置字体大小为10，可以通过缩放（transform:scale()）的方法来实现具体大小！！ -->
     <!-- 实现active 控制某个元素有某个属性-->
-    <div v-for="(item, index) in items" :key="index" :class="{ footer__item: true, 'footer__item--active': index === 0 }">
+    <router-link :to="item.to" v-for="(item, index) in items" :key="index" :class="{ footer__item: true, 'footer__item--active': index === 0 }">
       <!-- v-html用html的方式去显示某个变量，不让某个浏览器对一些特殊的字符转义 -->
       <div v-html="item.iconfont" class="iconfont"></div>
       <div class="footer__title">{{ item.title }}</div>
-    </div>
+    </router-link>
   </div>
 </template>
 
@@ -17,10 +17,10 @@ export default {
   name: 'Foot',
   setup() {
     const items = [
-      { iconfont: '&#xe6b8;', title: '首页' },
-      { iconfont: '&#xe789;', title: '购物车' },
-      { iconfont: '&#xe64b;', title: '订单' },
-      { iconfont: '&#xe7bd;', title: '我的' }
+      { iconfont: '&#xe6b8;', title: '首页', to: { name: 'Home' } },
+      { iconfont: '&#xe789;', title: '购物车', to: { path: '/cartList' } },
+      { iconfont: '&#xe64b;', title: '订单', to: { name: 'Home' } },
+      { iconfont: '&#xe7bd;', title: '我的', to: { name: 'Home' } }
     ]
     return { items }
   }

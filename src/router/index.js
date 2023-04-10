@@ -4,18 +4,29 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "about" */ '../views/home/Home.vue')
+    component: () => import(/* webpackChunkName: "home" */ '../views/home/Home.vue')
   },
   {
     // 要求跳转时网址后面要带一个数组id！！--实现点击不同的商品，进入不同的商品详情页面
     path: '/shop/:id',
     name: 'Shop',
-    component: () => import(/* webpackChunkName: "about" */ '../views/shop/Shop.vue')
+    component: () => import(/* webpackChunkName: "shop" */ '../views/shop/Shop.vue')
+  },
+  {
+    // 带参数id，和相应的页面地址匹配
+    path: '/orderConfirmation/:id',
+    name: 'OrderConfirmation',
+    component: () => import(/* webpackChunkName: "orderConfirmation" */ '../views/orderConfirmation/OrderConfirmation.vue')
+  },
+  {
+    path: '/cartList',
+    name: 'CartListp',
+    component: () => import(/* webpackChunkName: "cartList" */ '../views/cartList/CartList.vue')
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "about" */ '../views/login/Login.vue'),
+    component: () => import(/* webpackChunkName: "login" */ '../views/login/Login.vue'),
     // 正常情况下，已经登录之后，login页面应该是不能被跳转显示了
     // beforeEnter 访问login页面之前会执行的函数
     beforeEnter(to, from, next) {

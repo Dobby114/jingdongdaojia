@@ -9,7 +9,7 @@ const setCartStorage = state => {
 }
 const getCartStorage = () => {
   // 这里初始化
-  return JSON.parse(localStorage.cartList) || {}
+  return localStorage.cartList ? JSON.parse(localStorage.cartList) : {}
 }
 // 存储可能会在很多地方用到的全局数据
 // 先定义想要的数据结构---但一开始这个数据应该是空的，我们在程序运行过程中获得之后存储到这里
@@ -54,11 +54,15 @@ export default createStore({
       }
       product.check = true
       product.count += num
-      if (product.count <= 0) {
-        product.count = 0
+      // 这里我觉得count=0的话，就可以不用存了，就可以直接删了，为什么不直接把这个数据删了
+      if (product.count > 0) {
+        shopInfo[productId] = product
+        // product.count = 0
+        // 改进--直接把存储的数据中，count<0的数据删除了
+      } else if (shopInfo[productId]) {
+        delete shopInfo[productId]
       }
       // 再把product存进去
-      shopInfo[productId] = product
       // 每次改变数据的时候就调用一次，存一次
       setCartStorage(state)
     },

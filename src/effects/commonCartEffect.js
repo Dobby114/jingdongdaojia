@@ -12,5 +12,6 @@ export const useCommonCartEffect = () => {
     store.commit('changeCount', { shopId, productId, productInfo, num })
   }
   const { cartList } = toRefs(store.state)
+
   return { cartList, changeCount }
 }

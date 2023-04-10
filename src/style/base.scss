@@ -10,6 +10,15 @@ body {
 }
 @import './virable.scss';
 @import './mixins.scss';
+/* 清除默认样式的代码 */
+* {
+  /* 清除默认边距 */
+  margin: 0;
+  padding: 0;
+  /* 内减模式 */
+  box-sizing: border-box;
+}
+
 .wrapper {
   // 实现移动端滑动
   overflow-y: scroll;
@@ -23,15 +32,6 @@ body {
   // margin: 0 auto;
   // width: 3.4rem;
 }
-/* 清除默认样式的代码 */
-* {
-  /* 清除默认边距 */
-  margin: 0;
-  padding: 0;
-  /* 内减模式 */
-  box-sizing: border-box;
-}
-
 /* 清除列表的样式点点 */
 ul,
 ol,

@@ -60,7 +60,7 @@
 import { ref, reactive, toRefs, watchEffect } from 'vue'
 import { get } from '../../utils/request'
 import { useRoute } from 'vue-router'
-import { useCommonCartEffect } from './commonCartEffect'
+import { useCommonCartEffect } from '../../effects/commonCartEffect'
 const categotyInfo = [
   { name: '全部商品', tab: 'all' },
   { name: '秒杀', tab: 'seckill' },

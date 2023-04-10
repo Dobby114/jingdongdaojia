@@ -69,7 +69,7 @@
     <div class="bottom__allprice">
       总计：<span class="price">&yen;{{ calculate.totalPrice }}</span>
     </div>
-    <div class="bottom__check">去结算</div>
+    <router-link :to="{ path: `/orderConfirmation/${shopId}` }" class="bottom__check">去结算</router-link>
   </div>
 </template>
 
@@ -77,10 +77,10 @@
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
-import { useCommonCartEffect } from './commonCartEffect'
+import { useCommonCartEffect } from '../../effects/commonCartEffect'
 
 // 底部商品数量总和与价格总和//底部勾选的逻辑
-const useCartEffect = (shopId, showCartList) => {
+export const useCartEffect = (shopId, showCartList) => {
   const store = useStore()
   const cartList = store.state.cartList
   const calculate = computed(() => {
