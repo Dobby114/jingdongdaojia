@@ -1,13 +1,15 @@
 <template>
   <li class="shop">
     <!-- id控制跳转到不同的商品详情页面 -->
-    <router-link :to="`./shop/${item.name}`"
+    <!-- 用item.name来当路由地址，可能会出现item.name不存在的问题！ -->
+    <!-- 校验一下：如果有item.name就用item.name否则就用item._id -->
+    <router-link :to="`/shop/${item.name ? item.name : item._id}`"
       ><div class="container"><img :src="item.imgUrl" alt="" /></div>
       <!-- 参数控制是否有下划线这个class---参数动态控制标签的样式 -->
       <!-- <div class="shop__info shop__info--border"> -->
       <!-- 用这种方式来控制多个样式 -->
       <div :class="{ shop__info: true, 'shop__info--border': hiddeBorder ? false : true }">
-        <h4 class="title">{{ item.name }}</h4>
+        <h4 class="title">{{ item.name ? item.name : item._id }}</h4>
         <div class="tag">
           <span>月售:{{ item.sales }}</span
           ><span>起送:{{ item.expressLimit }}</span

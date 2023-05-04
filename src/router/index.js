@@ -20,8 +20,18 @@ const routes = [
   },
   {
     path: '/cartList',
-    name: 'CartListp',
+    name: 'CartList',
     component: () => import(/* webpackChunkName: "cartList" */ '../views/cartList/CartList.vue')
+  },
+  {
+    path: '/orderlist',
+    name: 'OrderList',
+    component: () => import(/* webpackChunkName: "orderlist" */ '../views/orderlist/OrderList.vue')
+  },
+  {
+    path: '/personal',
+    name: 'Personal',
+    component: () => import(/* webpackChunkName: "personal" */ '../views/personal/Personal.vue')
   },
   {
     path: '/login',

@@ -69,16 +69,30 @@
     <div class="bottom__allprice">
       总计：<span class="price">&yen;{{ calculate.totalPrice }}</span>
     </div>
-    <router-link :to="{ path: `/orderConfirmation/${shopId}` }" class="bottom__check">去结算</router-link>
+    <!-- 这里应该添加一个判断，如果购物车为0的话，弹出提示框，如果不为0才跳转 -->
+    <div class="bottom__check" @click="checkClick">去结算</div>
   </div>
+  <Toast v-if="show" :toastMessa="toastMessa" />
 </template>
 
 <script>
 import { computed, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import { useCommonCartEffect } from '../../effects/commonCartEffect'
+import Toast, { useToastEffect } from '../../components/Toast.vue'
 
+const useCheckEffect = (product, shopId) => {
+  const router = useRouter()
+  const { show, toastMessa, showToast } = useToastEffect()
+  // console.log(JSON.stringify(product.value))
+  // console.log(product)o')
+  // 判断它是否为空对象！
+  const checkClick = () => {
+    JSON.stringify(product.value) === '{}' ? showToast('请至少添加一种添加商品!') : router.push({ path: `/orderConfirmation/${shopId}` })
+  }
+  return { checkClick, show, toastMessa }
+}
 // 底部商品数量总和与价格总和//底部勾选的逻辑
 export const useCartEffect = (shopId, showCartList) => {
   const store = useStore()
@@ -112,7 +126,7 @@ export const useCartEffect = (shopId, showCartList) => {
   // 底部购物栏中的商品展示的逻辑
   // 1、拿到store中的数据，然后利用里面的数据，将商品通过v-for的方式展示出来
   const product = computed(() => {
-    const productList = cartList[shopId] || []
+    const productList = cartList[shopId] || {}
     return productList
   })
   const { changeCount } = useCommonCartEffect()
@@ -143,6 +157,7 @@ const toggleCartEffect = () => {
 
 export default {
   name: 'ShopCart',
+  components: { Toast },
   setup() {
     // 为什么要用computed？
     // 定义页面上的商品数量总和和价钱总和的函数
@@ -150,7 +165,8 @@ export default {
     const shopId = route.params.id
     const { showCartList, handleShowCartlist } = toggleCartEffect()
     const { calculate, product, changeCount, changeProductCheck, changeSelectAllState, clearAll } = useCartEffect(shopId, showCartList)
-    return { calculate, product, shopId, showCartList, changeCount, changeProductCheck, changeSelectAllState, clearAll, handleShowCartlist }
+    const { checkClick, show, toastMessa } = useCheckEffect(product, shopId)
+    return { calculate, product, shopId, showCartList, changeCount, changeProductCheck, changeSelectAllState, clearAll, handleShowCartlist, checkClick, show, toastMessa }
   }
 }
 </script>

@@ -13,7 +13,7 @@
 <script>
 import Top from './Top.vue'
 import Nearby from './nearby.vue'
-import Foot from './Foot.vue'
+import Foot from '../../components/Foot.vue'
 export default {
   name: 'Home',
   components: { Top, Nearby, Foot }

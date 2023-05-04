@@ -1,11 +1,10 @@
 <template>
-  CartList
   <Foot />
 </template>
 <script>
 import Foot from '../../components/Foot.vue'
 export default {
-  name: 'CartList',
+  name: 'OrderList',
   components: { Foot }
 }
 </script>
