@@ -1,25 +1,26 @@
-# 京东到家商城仿写（移动端）
-
-## 项目运行
+# 京东到家仿写（移动端）
+## 项目介绍
+  京东到家仿写项目是一个基于vue3及其相关技术开发的即时零售品台，包括登录、注册、首页、首页搜索、商户详情、订单结算、购物车、订单管理、用户主页、地址管理等页面。
+### 主要功能
+* 注册、登录
+* 单个商家详情展示
+* 商品分类展示
+* 购物车功能
+* 订单提交
+* 购物车、订单列表详情展示
+* 首页商品搜索和搜索历史
+### TODO
+地址定位、地址管理、登录开发的token验证、项目线上访问、我的页面（用户头像设置--文件上传）、ElimentUI样式管理、移动端用户交互体验改进
+### 项目难点
+购物、订单业务逻辑的实现----不同店铺对应的购物车和订单中商品数据的计算和管理----解决方法：vueX数据管理
+## 主要技术
+列表，详细说一下用来什么功能实现了什么东西
+## 页面展示
+## 项目开发流程图
+## 项目运行（Node版本为18.14.1）
 ```
+git clone https://github.com/Dobby114/jingdongdaojia.git
+cd jingdongdaojia
 npm install
 npm run serve
 ```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
