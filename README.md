@@ -1,8 +1,9 @@
-# jingdong
+# 京东到家商城仿写（移动端）
 
-## Project setup
+## 项目运行
 ```
 npm install
+npm run serve
 ```
 
 ### Compiles and hot-reloads for development
