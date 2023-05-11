@@ -306,7 +306,7 @@ export default {
   width: 100%;
   height: 0.5rem;
   background-color: white;
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   border: 0.01rem solid #fff;

@@ -34,7 +34,8 @@ export default {
 @import '../style/mixins.scss';
 .footer {
   display: flex;
-  position: absolute;
+  // fixed是相对于浏览器窗口！
+  position: fixed;
   bottom: 0;
   height: 0.49rem;
   width: 100%;

@@ -51,6 +51,7 @@ const useLoginEffect = showToast => {
       // localStorage.isLogin === 'true' ? router.push({ name: 'Home' }) : alert('请先登录')
     } catch (err) {
       showToast('请求失败')
+      console.error(err)
       // alert('请求失败')
     }
   }

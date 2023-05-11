@@ -418,8 +418,6 @@ export default {
         background: #fff;
         color: #4fb0f9;
       }
-      .exit {
-      }
     }
   }
   .paysuccess {

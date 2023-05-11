@@ -89,8 +89,6 @@ instance2.interceptors.request.use(
   config => {
     if (localStorage.isLoginToken) {
       config.headers.Authorization = localStorage.isLoginToken
-    } else {
-      router.replace('/login')
     }
     return config
   },

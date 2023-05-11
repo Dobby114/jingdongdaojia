@@ -42,6 +42,7 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: () => import(/* webpackChunkName: "login" */ '../views/login/Login.vue'),
+    meta: { requireAuth: false },
     // 正常情况下，已经登录之后，login页面应该是不能被跳转显示了
     // beforeEnter 访问login页面之前会执行的函数
     // 路由独享的守卫,只在这个路由下起作用和beforeEach的作用一样
@@ -57,6 +58,7 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: () => import(/* webpackChunkName: "about" */ '../views/register/Register.vue'),
+    meta: { requireAuth: false },
     beforeEnter(to, from, next) {
       // 如果登录就不能再跳转到注册页面
       const isLoginToken = localStorage.isLoginToken

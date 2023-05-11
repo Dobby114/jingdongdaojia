@@ -21,14 +21,14 @@ body {
 
 .wrapper {
   // 实现移动端滑动
-  overflow-y: scroll;
-  position: absolute;
-  left: 0;
-  top: 0;
-  // 定位版心，要给底部一个距离，overflow-y才能生效
-  bottom: 0rem;
-  right: 0;
-  padding: 0 0.18rem 0.2rem 0.18rem;
+  // position: absolute;
+  // left: 0;z
+  // top: 0;
+  // 定位版心，要给底部一个height距离，overflow-y才能生效
+  // bottom: 0rem;
+  // right: 0;z
+  height: 100%;
+  padding: 0 0.18rem 0.4rem 0.18rem;
   // margin: 0 auto;
   // width: 3.4rem;
 }

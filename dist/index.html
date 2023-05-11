@@ -1,0 +1,5 @@
+<!doctype html><html lang=""><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="icon" href="favicon.ico"/><title>jingdong</title><script>// 获得当前设备的宽度;计算该设备宽度和375的比率;通过比率与当前的fontsize的值相乘得到新的fontsize的值,然后通过getElementsByTagName设置html总的font-size属性为新的值
+      var width = document.documentElement.clientWidth || document.body.clientWidth
+      var ratio = width / 375
+      var fontSize = 100 * ratio
+      document.getElementsByTagName('html')[0].style['font-size'] = fontSize + 'px'</script><script defer="defer" src="js/chunk-vendors.c713e7b7.js"></script><script defer="defer" src="js/app.7457e2fe.js"></script><link href="css/app.b02c2aef.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but jingdong doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div></body></html>

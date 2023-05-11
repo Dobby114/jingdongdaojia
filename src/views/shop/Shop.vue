@@ -1,15 +1,17 @@
 <template>
-  <div class="wrapper">
-    <div class="top">
-      <router-link to="../" class="back iconfont">&#xe6db;</router-link>
-      <div class="search">
-        <a href="#" class="iconfont search__icon">&#xe6ac;</a>
-        <input type="text" placeholder="请输入商品名称搜索" />
+  <div>
+    <div class="wrapper">
+      <div class="top">
+        <router-link to="../" class="back iconfont">&#xe6db;</router-link>
+        <div class="search">
+          <a href="#" class="iconfont search__icon">&#xe6ac;</a>
+          <input type="text" placeholder="请输入商品名称搜索" />
+        </div>
       </div>
+      <!-- 加入的v-show，只有当item.imgURL被加载出来了，该组件才会出现，改善视觉效果 -->
+      <ShopInfo :item="item" :hiddeBorder="true" v-show="item.imgUrl" />
+      <Content />
     </div>
-    <!-- 加入的v-show，只有当item.imgURL被加载出来了，该组件才会出现，改善视觉效果 -->
-    <ShopInfo :item="item" :hiddeBorder="true" v-show="item.imgUrl" />
-    <Content />
   </div>
   <ShopCart />
 </template>

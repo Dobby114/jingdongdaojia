@@ -154,7 +154,7 @@ export default {
   left: 0;
   right: 0;
   top: 1.5rem;
-  bottom: 0rem;
+  bottom: 0.4rem;
   overflow-y: scroll;
   &__nav {
     height: 100%;

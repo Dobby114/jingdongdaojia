@@ -103,7 +103,7 @@ export default {
   .content {
     // margin-bottom: 0.16rem;
     // height: 4rem;
-    overflow-y: scroll;
+    // overflow-y: scroll;
     .shopname {
       padding: 0.2rem 0 0 0.16rem;
       background-color: #fff;
