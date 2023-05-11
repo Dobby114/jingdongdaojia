@@ -64,10 +64,14 @@ import { useCommonCartEffect } from '../../effects/commonCartEffect'
 import { useCartEffect } from '../shop/ShopCart.vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ref } from 'vue'
+import { useStore } from 'vuex'
 import { post } from '../../utils/request'
 import Toast, { useToastEffect } from '../../components/Toast.vue'
 
-const useButtonEffect = (showToast, clearAll, shopId) => {
+const submitOrder = (store, orderInfo) => {
+  store.commit('submitOrder', { orderInfo })
+}
+const useButtonEffect = (showToast, clearAll, shopId, store) => {
   // 点击事件
   // 点击提交订单后出现mask
   const mask = ref(false)
@@ -82,10 +86,13 @@ const useButtonEffect = (showToast, clearAll, shopId) => {
   // 点击确认支付，mask不要消失--同时进入确认订单页面（这个先不做）用弹出支付成功，等待配送取代---变量控制
   // 下完订单后对应商铺的购物车应该清空然后跳到我的订单页面
   const payClick = async (shopId, productsList) => {
+    // 把订单数据传递到后端，创建订单
     const products = []
+    const orderProducts = []
     for (const i in productsList) {
       const product = productsList[i]
       products.push({ id: product._id, name: product.name })
+      orderProducts.push({ orderSales: product.count, product: { name: product.name, img: product.imgUrl, price: product.price, sales: product.sales } })
     }
     // try———catch保证就算是地址错了，还能往下，最后得到catch的错误
     // 点击登录发起post请求,传入后端需要的参数---接口返回数据，根据数据判断是否请求成功
@@ -93,6 +100,8 @@ const useButtonEffect = (showToast, clearAll, shopId) => {
       // 如果用户没有输入账号或者密码的话，做一个校验提示---如果没填的话，就不会进行下面的发出请求操作
 
       // 根据后端接口返回的数据来判断
+      // const result1 = await post2('/api/test', { username: 'lyh' })
+      // console.log(result1)
       const result = await post('/api/order', {
         addressId: '上海大学延长校区行健楼10层技园2号楼10层',
         shopId,
@@ -110,6 +119,17 @@ const useButtonEffect = (showToast, clearAll, shopId) => {
       showToast('提交订单失败')
       // console.error(err.message)
     }
+    // console.log(orderProducts)
+    // 把订单数据存到localstorage里的
+    const orderInfo = {
+      address: '上海大学延长校区行健楼10层技园2号楼10层',
+      shopId: shopId,
+      shopName: shopId,
+      isCanceled: false,
+      products: orderProducts
+    }
+    // console.log(orderInfo)
+    submitOrder(store, orderInfo)
   }
   const exitClick = router => {
     mask.value = false
@@ -152,16 +172,17 @@ export default {
   setup() {
     // 1.拿到相对应的商户的购物车里的信息
     const router = useRouter()
-    const store = useRoute()
-    const shopId = store.params.id
-
+    const route = useRoute()
+    const shopId = route.params.id
+    // 发现一个问题，这种写法只能在setup函数里使用获得路由和store！！？？
+    const store = useStore()
     const { cartList } = useCommonCartEffect()
     const products = cartList.value[shopId]
     // 为啥我这里用计算属性就要变成这样？
     const { calculate, clearAll } = useCartEffect(shopId, products)
     const totalPrice = calculate.value.totalPrice
     const { show, toastMessa, showToast } = useToastEffect()
-    const { submitClick, cancleClick, payClick, exitClick, mask, paySuccess } = useButtonEffect(showToast, clearAll, shopId)
+    const { submitClick, cancleClick, payClick, exitClick, mask, paySuccess } = useButtonEffect(showToast, clearAll, shopId, store)
     const { showFold, productHiddenChange, foldIcon, showProducts } = hiddenProductsEffect(products)
     return { shopId, products, totalPrice, submitClick, cancleClick, payClick, exitClick, mask, paySuccess, show, toastMessa, router, showFold, foldIcon, productHiddenChange, showProducts }
   }
@@ -296,7 +317,7 @@ export default {
         background: #f5f5f5;
         text-align: center;
         line-height: 0.28rem;
-        font-size: 14px;
+        font-size: 0.14rem;
         color: #999999;
         span {
           font-size: 0.18rem;
@@ -385,7 +406,7 @@ export default {
         padding: 0;
         outline: none; //消除默认点击蓝色边框效果
         font-size: 0.14rem;
-        border: 1px solid #4fb0f9;
+        border: 0.01rem solid #4fb0f9;
         background: #4fb0f9;
         width: 0.8rem;
         height: 0.32rem;

@@ -51,7 +51,7 @@ export default {
     margin-left: 0.16rem;
     width: 100%;
     &--border {
-      border-bottom: 1px solid #f1f1f1;
+      border-bottom: 0.01rem solid #f1f1f1;
     }
     .title {
       font-weight: 400;

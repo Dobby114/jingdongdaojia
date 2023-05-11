@@ -5,7 +5,7 @@
       <span class="header__item">上海大学延长校区行健楼10层技园2号楼10层</span>
       <span class="iconfont header__notice">&#xe613;</span>
     </div>
-    <div class="header__search"><a href="#" class="iconfont">&#xe6ac;</a> <input type="text" style="width: 140px" placeholder="山姆会员商店优惠商品" /></div>
+    <div class="header__search"><a href="#" class="iconfont">&#xe6ac;</a> <input type="text" style="width: 1.4rem" placeholder="山姆会员商店优惠商品" @click="() => handleInputClick(router)" /></div>
   </div>
   <!-- 轮播图---后期用js做成轮播图的样子 -->
   <div class="banner">
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router'
 export default {
   name: 'Top',
   setup() {
@@ -42,7 +43,11 @@ export default {
       { imgUrl: 'https://www.dell-lee.com/imgs/vue3/大牌免运.png', title: '大牌免运' },
       { imgUrl: 'https://www.dell-lee.com/imgs/vue3/红包.png', title: '红包' }
     ]
-    return { navInfos }
+    const router = useRouter()
+    const handleInputClick = router => {
+      router.push({ name: 'Search' })
+    }
+    return { navInfos, router, handleInputClick }
   }
 }
 </script>

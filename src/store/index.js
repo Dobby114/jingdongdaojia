@@ -7,15 +7,27 @@ const setCartStorage = state => {
   // localstorage里存的必须是Json格式的
   localStorage.cartList = cartListInfo
 }
+const setOrderStorage = state => {
+  const { orderList } = state
+
+  const orderListInfo = JSON.stringify(orderList)
+  // localstorage里存的必须是Json格式的
+  localStorage.orderList = orderListInfo
+}
 const getCartStorage = () => {
   // 这里初始化
   return localStorage.cartList ? JSON.parse(localStorage.cartList) : {}
+}
+const getOrderStorage = () => {
+  // 这里初始化
+  return localStorage.orderList ? JSON.parse(localStorage.orderList) : []
 }
 // 存储可能会在很多地方用到的全局数据
 // 先定义想要的数据结构---但一开始这个数据应该是空的，我们在程序运行过程中获得之后存储到这里
 export default createStore({
   state: {
-    cartList: getCartStorage()
+    cartList: getCartStorage(),
+    orderList: getOrderStorage()
     // {
     //   // 第一层数据结构==页面的id
     //   // 第二层数据结构==这个页面里面所有的商品的信息
@@ -94,6 +106,12 @@ export default createStore({
       // 直接把这个页面里存储的数据清零就好了
       products[shopId] = {}
       setCartStorage(state)
+    },
+    submitOrder(state, payload) {
+      const { orderInfo } = payload
+      const orderList = state.orderList
+      orderList.push(orderInfo)
+      setOrderStorage(state)
     }
   },
   actions: {},

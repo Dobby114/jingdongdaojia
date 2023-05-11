@@ -18,15 +18,18 @@ import { reactive, toRefs } from 'vue'
 import ShopInfo from '../../components/ShopInfo.vue'
 import Content from './Content.vue'
 import ShopCart from './ShopCart.vue'
-import { get } from '../../utils/request'
+import { get2 } from '../../utils/request'
 import { useRoute } from 'vue-router'
 // useRouter表示的整个项目的路由，useRoute表示当前访问的路由的信息--可以拿到id
 const getShopInfo = () => {
   const route = useRoute()
   const data = reactive({ item: {} })
+  console.log(route.params.id)
   const getItemData = async () => {
-    const result = await get(`/api/shop/${route.params.id}`)
+    const result = await get2(`/api/shop/${route.params.id}`)
+    // console.log(result)
     if (result?.errno === 0 && result?.data) {
+      // 原接口是直接拿的data
       data.item = result.data
     }
   }

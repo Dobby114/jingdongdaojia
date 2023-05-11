@@ -41,6 +41,7 @@ export default {
   // background-color: pink;
   border-top: solid 0.01rem #f1f1f1;
   box-sizing: border-box;
+  background-color: #fff;
   &__item {
     flex: 1;
     text-align: center;
@@ -53,7 +54,7 @@ export default {
     }
   }
   &__title {
-    font-size: 20px;
+    font-size: 0.2rem;
     transform: scale(0.5, 0.5);
     transform-origin: center top;
   }

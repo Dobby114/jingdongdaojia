@@ -15,7 +15,7 @@ r
 // ???这个import方式也是{}是用export方式导出的，而不加{}的是用export default方式导出的
 import { useRouter } from 'vue-router'
 import { reactive, toRefs } from 'vue'
-import { post } from '../../utils/request'
+import { post2 } from '../../utils/request'
 import Toast, { useToastEffect } from '../../components/Toast.vue'
 
 // 封装toast，拆分代码--让setup里只关注主流程的东西，并且因为它会在多个页面中使用，所以把它放到toast组件文件汇总，这里直接引入使用就好了
@@ -38,9 +38,10 @@ const useLoginEffect = showToast => {
         return
       }
       // 根据后端接口返回的数据来判断
-      const result = await post('/api/user/login', { username: 'username', password: 'password' })
-      if (result?.errno === 0) {
-        localStorage.isLogin = true
+      const result = await post2('/api/user/login', { username: data.username, password: data.password })
+      console.log(result)
+      if (result?.errno === 0 && result?.data.verifySuccess) {
+        localStorage.isLoginToken = result?.data.token
         router.push({ name: 'Home' })
       } else {
         showToast('登录失败')
@@ -105,8 +106,8 @@ export default {
     // width: 100%;
     height: 0.48rem;
     background-color: #f9f9f9;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 6px;
+    border: 0.01rem solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.06rem;
     font-size: 0.16rem;
   }
   &__input--account {
@@ -127,8 +128,8 @@ export default {
     width: 100%;
     height: 0.48rem;
     background: #0091ff;
-    box-shadow: 0 4px 8px 0 rgba(0, 145, 255, 0.32);
-    border-radius: 4px;
+    box-shadow: 0 0.04rem 0.08rem 0 rgba(0, 145, 255, 0.32);
+    border-radius: 0.04rem;
     border: none;
     font-size: 0.16rem;
     color: $base-color;

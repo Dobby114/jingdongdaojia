@@ -8,13 +8,19 @@
 </template>
 <script>
 import { ref } from 'vue'
-import { get } from '../../utils/request'
+import { get2 } from '../../utils/request'
 import ShopInfo from '../../components/ShopInfo.vue'
 
 const useNearbyListEffect = () => {
   const shopInfors = ref([])
+  // const getShopInfos = async () => {
+  //   const result = await get('/api/shop/hot-list')
+  //   if (result?.errno === 0 && result?.data?.length) {
+  //     shopInfors.value = result.data
+  //   }
+  // }
   const getShopInfos = async () => {
-    const result = await get('/api/shop/hot-list')
+    const result = await get2('/api/shop/nearby-list')
     if (result?.errno === 0 && result?.data?.length) {
       shopInfors.value = result.data
     }

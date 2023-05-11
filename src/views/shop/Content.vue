@@ -58,7 +58,7 @@
 
 <script>
 import { ref, reactive, toRefs, watchEffect } from 'vue'
-import { get } from '../../utils/request'
+import { get2 } from '../../utils/request'
 import { useRoute } from 'vue-router'
 import { useCommonCartEffect } from '../../effects/commonCartEffect'
 const categotyInfo = [
@@ -73,7 +73,7 @@ const uesTabEffect = () => {
   const handleCategotyClick = tab => {
     // 获得当前点击的类别后，发起请求
     // getCategotyInfos(tab)
-    console.log(tab)
+    // console.log(tab)
     curTab.value = tab
   }
   return { curTab, handleCategotyClick }
@@ -83,7 +83,9 @@ const contentListEffect = (curTab, shopId) => {
   // console.log(shopId)
   const contentList = reactive({ content: [] })
   const getCategotyInfos = async () => {
-    const result = await get(`/api/shop/${shopId}/products`, { tab: curTab.value })
+    const result = await get2(`/api/shop/${shopId}/products`, { tab: curTab.value })
+    // console.log(result1)
+    // const result = await get(`/api/shop/${shopId}/products`, { tab: curTab.value })
     if (result?.errno === 0 && result?.data) {
       contentList.content = result.data
     }

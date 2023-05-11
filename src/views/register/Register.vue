@@ -38,7 +38,7 @@ const useRegisterEffect = showToast => {
         return
       }
       // 登录和注册这里想自己写一下mock接口，设置一下账号密码
-      const result = await post('/api/user/register', { username: 'username', password: 'password' })
+      const result = await post('/api/user/register', { username: data.username, password: data.password })
       if (result?.errno === 0) {
         router.push({ name: 'Login' })
       } else {
@@ -94,8 +94,8 @@ export default {
     // width: 100%;
     height: 0.48rem;
     background-color: #f9f9f9;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 6px;
+    border: 0.01rem solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.06rem;
     font-size: 0.16rem;
   }
   &__input--account {
@@ -117,8 +117,8 @@ export default {
     width: 100%;
     height: 0.48rem;
     background: #0091ff;
-    box-shadow: 0 4px 8px 0 rgba(0, 145, 255, 0.32);
-    border-radius: 4px;
+    box-shadow: 0 0.04rem 0.08rem 0 rgba(0, 145, 255, 0.32);
+    border-radius: 0.04rem;
     border: none;
     font-size: 0.16rem;
     color: $base-color;
