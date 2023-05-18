@@ -27,7 +27,10 @@
 </template>
 
 <script>
+import { MapLoader } from '../../utils/amap'
 import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+
 export default {
   name: 'Top',
   setup() {
@@ -47,6 +50,18 @@ export default {
     const handleInputClick = router => {
       router.push({ name: 'Search' })
     }
+    const pos = ref()
+    const handlePositon = async () => {
+      try {
+        const positon = await MapLoader()
+        pos.value = positon
+        // console.log(positon)
+      } catch (err) {
+        // console.log(err)
+      }
+    }
+    handlePositon()
+    // console.log(pos)
     return { navInfos, router, handleInputClick }
   }
 }

@@ -26,7 +26,7 @@ import { useRoute } from 'vue-router'
 const getShopInfo = () => {
   const route = useRoute()
   const data = reactive({ item: {} })
-  console.log(route.params.id)
+  // console.log(route.params.id)
   const getItemData = async () => {
     const result = await get2(`/api/shop/${route.params.id}`)
     // console.log(result)
