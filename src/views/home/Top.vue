@@ -9,12 +9,12 @@
   </div>
   <!-- 轮播图---后期用js做成轮播图的样子 -->
   <div class="banner">
-    <img src="https://www.dell-lee.com/imgs/vue3/banner.jpg" alt="后面做成轮播图" class="banner__img1" />
+    <img src="../../../public/banner.jpg" alt="后面做成轮播图" class="banner__img1" />
   </div>
   <!-- 导航  导航里每个类别都应该是a标签，链接可跳转的那种-->
   <div class="nav">
     <ul>
-      <li v-for="(item, index) in navInfos" :key="index">
+      <li v-for="(item, index) in navInfos.value" :key="index">
         <a href="#"
           ><div class="containor"><img :src="item.imgUrl" alt="" /></div>
           <div class="desc">{{ item.title }}</div></a
@@ -29,23 +29,22 @@
 <script>
 import { MapLoader } from '../../utils/amap'
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
+import { get2 } from '../../utils/request.js'
 
 export default {
   name: 'Top',
   setup() {
-    const navInfos = [
-      { imgUrl: 'https://www.dell-lee.com/imgs/vue3/超市.png', title: '超市便利' },
-      { imgUrl: 'https://www.dell-lee.com/imgs/vue3/菜市场.png', title: '菜市场' },
-      { imgUrl: 'https://www.dell-lee.com/imgs/vue3/水果店.png', title: '水果店' },
-      { imgUrl: 'https://www.dell-lee.com/imgs/vue3/鲜花.png', title: '鲜花绿植' },
-      { imgUrl: 'https://www.dell-lee.com/imgs/vue3/医药健康.png', title: '医药健康' },
-      { imgUrl: 'https://www.dell-lee.com/imgs/vue3/家居.png', title: '家居时尚' },
-      { imgUrl: 'https://www.dell-lee.com/imgs/vue3/蛋糕.png', title: '烘焙蛋糕' },
-      { imgUrl: 'https://www.dell-lee.com/imgs/vue3/签到.png', title: '签到' },
-      { imgUrl: 'https://www.dell-lee.com/imgs/vue3/大牌免运.png', title: '大牌免运' },
-      { imgUrl: 'https://www.dell-lee.com/imgs/vue3/红包.png', title: '红包' }
-    ]
+    const navInfos = reactive([])
+    const getNavInfos = async () => {
+      const result = await get2('/api/nav')
+      // console.log(result1)
+      // const result = await get(`/api/shop/${shopId}/products`, { tab: curTab.value })
+      if (result?.errno === 0 && result?.data) {
+        navInfos.value = result.data
+      }
+    }
+    getNavInfos()
     const router = useRouter()
     const handleInputClick = router => {
       router.push({ name: 'Search' })

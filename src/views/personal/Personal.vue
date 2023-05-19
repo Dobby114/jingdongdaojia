@@ -16,7 +16,7 @@
       <div class="photo">
         <!-- input 的accept属性可以用来解决格式筛选问题 -->
         <input type="file" name="image" accept="image/*" @change="uploadUserPhoto" />
-        <img :src="imgUrl ? imgUrl : 'https://www.dell-lee.com/imgs/vue3/超市.png'" alt="头像" />
+        <img :src="imgUrl ? imgUrl : 'https://img2.baidu.com/it/u=281177743,3353357933&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'" alt="头像" />
       </div>
       <div class="edit iconfont">&#xe683;</div>
       <div class="manage">
