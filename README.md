@@ -35,7 +35,6 @@ ElimentUI 样式管理、移动端用户交互体验改进、更加灵活的多�
   * 主要通过发起 axios.get 请求,访问拼接的地址
 ## 页面展示（扫描二维码）
 https://dobby114.github.io/jingdongdaojia/#/login
-![d64dd178-c6c1-423a-9c9e-01adc3f0c132](https://github.com/Dobby114/jingdongdaojia/assets/66785750/e40c6acf-91de-4fe9-9717-5007adf26484)
 
 ## 项目开发流程图
 
