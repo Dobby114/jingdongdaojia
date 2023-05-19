@@ -34,8 +34,8 @@ ElimentUI 样式管理、移动端用户交互体验改进、更加灵活的多�
 * 通过高德地图提供的地理逆编码 web 服务 API 将得到的经纬度变成地址信息（使用原 JS API 中的逆编码得到不合法的 key 的错误，遂，放弃）
   * 主要通过发起 axios.get 请求,访问拼接的地址
 ## 页面展示（扫描二维码）
-![qrcode_dobby114 github io](https://github.com/Dobby114/jingdongdaojia/assets/66785750/ae305ab1-c505-43f5-9f07-f9b71eb3747f)
 https://dobby114.github.io/jingdongdaojia/#/login
+![d64dd178-c6c1-423a-9c9e-01adc3f0c132](https://github.com/Dobby114/jingdongdaojia/assets/66785750/e40c6acf-91de-4fe9-9717-5007adf26484)
 
 ## 项目开发流程图
 
