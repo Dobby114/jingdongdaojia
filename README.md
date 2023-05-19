@@ -33,7 +33,7 @@ ElimentUI 样式管理、移动端用户交互体验改进、更加灵活的多�
   * 主要用到其中的 AMap.Geolocation 插件，调用其中的 getCurrentPosition 方法得到经纬度
 * 通过高德地图提供的地理逆编码 web 服务 API 将得到的经纬度变成地址信息（使用原 JS API 中的逆编码得到不合法的 key 的错误，遂，放弃）
   * 主要通过发起 axios.get 请求,访问拼接的地址
-## 页面展示（扫描二维码）
+## 页面展示（扫描二维码）用户名：admin  密码：123456
 https://dobby114.github.io/jingdongdaojia/#/login
 
 ## 项目开发流程图
